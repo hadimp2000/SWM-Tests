@@ -1,0 +1,16 @@
+# Ignore node_modules
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore environment variables (if any)
+.env
+
+# Ignore Cypress test artifacts
+cypress/videos/
+cypress/screenshots/
+
+# Ignore any system files (Mac and Windows)
+.DS_Store
+Thumbs.db
