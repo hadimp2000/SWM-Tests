@@ -1,11 +1,8 @@
 describe("User Registration and Login Tests", () => {
   it("UR-01: Verify new user registration", () => {
     cy.visit("/register");
-    cy.get("input#email")
-      .should("exist")
-      .should("be.visible")
-      .should("not.be.disabled")
-      .type("hmp123475@gmail.com");
+    cy.get('input[placeholder="E-Mail"]').click();
+    cy.get('input[placeholder="E-Mail"]').type("hmp123475@gmail.com");
 
     cy.get("input#password")
       .type("Password123!")
@@ -76,13 +73,12 @@ describe("User Registration and Login Tests", () => {
     ).scrollIntoView();
   });
 
-  it.only("UR-04: Verify password recovery", () => {
+  it("UR-04: Verify password recovery", () => {
     cy.visit("/login");
 
-    cy.contains("a", "Forgot your password?").click();
-
-    cy.wait(2000) 
-
+    cy.get('a[href="/forgot-password"]').click();
+    cy.wait(2000)
+  
     cy.get('input[type="email"]').click();
     cy.get('input[type="email"]').type("hmp123475@gmail.com");
 
