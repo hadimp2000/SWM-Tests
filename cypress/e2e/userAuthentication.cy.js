@@ -1,9 +1,6 @@
 describe("User Registration and Login Tests", () => {
-  beforeEach(() => {
-    cy.visit("/register");
-  });
-
   it("UR-01: Verify new user registration", () => {
+    cy.visit("/register");
     cy.get("input#email")
       .should("exist")
       .should("be.visible")
@@ -45,5 +42,19 @@ describe("User Registration and Login Tests", () => {
     cy.contains("United States").click();
 
     cy.contains("Register Now").click();
+  });
+
+  it.only("UR-02: Verify login functionality", () => {
+    cy.visit("/login");
+
+    cy.get('input[type="email"]').click();
+    cy.get('input[type="email"]').type("hmp123475@gmail.com");
+    cy.get('input[type="email"]').should("have.value", "hmp123475@gmail.com");
+
+    cy.get('input[type="password"]')
+      .type("Password123!")
+      .should("have.value", "Password123!");
+
+    cy.contains('button[type="submit"]', "Sign In").click();
   });
 });
