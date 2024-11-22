@@ -57,4 +57,21 @@ describe("User Registration and Login Tests", () => {
 
     cy.contains('button[type="submit"]', "Sign In").click();
   });
+
+  it.only("UR-03: Verify login failure for invalid credentials", () => {
+    cy.visit("/login");
+
+    cy.get('input[type="email"]').click();
+    cy.get('input[type="email"]').type("something@gmail.com");
+    cy.get('input[type="email"]').should("have.value", "something@gmail.com");
+
+    cy.get('input[type="password"]')
+      .type("Password123!")
+      .should("have.value", "Password123!");
+
+    cy.contains('button[type="submit"]', "Sign In").click();
+
+    cy.contains('The email address or password you provided is incorrect').scrollIntoView()
+
+  });
 });
