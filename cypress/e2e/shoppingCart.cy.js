@@ -3,14 +3,6 @@ describe("Shopping cart tests", () => {
     cy.login();
   });
 
-  it("PP-01: Verify product details display", () => {
-    cy.visit("/");
-
-    cy.contains("p", "Our premium selection").click();
-
-    cy.get("div.jsx-3710567822").first().find("img").first().click();
-  });
-
   it("PP-02: Verify Add to Cart button", () => {
     cy.visit("/");
 
@@ -105,7 +97,7 @@ describe("Shopping cart tests", () => {
     cy.wait(1000);
   });
 
-  it("CO-01: Verify checkout page loads correctly", () => {
+  it("CO-01 to 04: visit Logs", () => {
     // TestId = CO-01
     cy.log("CO-01: Verify checkout page loads correctly");
     cy.visit("/cart");

@@ -1,8 +1,8 @@
 describe("User Registration and Login", () => {
-  it.only("UR-01: Verify new user registration", () => {
+  it("UR-01: Verify new user registration", () => {
     cy.visit("/register");
     cy.get('input[placeholder="E-Mail"]').click();
-    cy.get('input[placeholder="E-Mail"]').type("differentEmail6@gmail.com");
+    cy.get('input[placeholder="E-Mail"]').type("differentEmail7@gmail.com");
 
     cy.get("input#password")
       .type("Password123!")
@@ -65,10 +65,12 @@ describe("User Registration and Login", () => {
     cy.contains(
       "The email address or password you provided is incorrect"
     ).scrollIntoView();
+    cy.wait(2000)
   });
 
   it("UR-04: Verify password recovery", () => {
     cy.visit("/login");
+    cy.wait(2000);
 
     cy.get('a[href="/forgot-password"]').click();
     cy.wait(2000);
@@ -79,5 +81,8 @@ describe("User Registration and Login", () => {
     cy.get('button[type="button"]')
       .contains(/Recover Password/i)
       .click();
+      cy.wait(2000)
+
+      cy.contains('An E-Mail has been sent to the provided address if it is registered in our system').should('be.visible').scrollIntoView()
   });
 });

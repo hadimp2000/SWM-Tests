@@ -47,7 +47,7 @@ describe("User Account tests", () => {
       .scrollIntoView();
   });
 
-  it.only("UA-04: Verify logout functionality", () => {
+  it("UA-04: Verify logout functionality", () => {
     cy.visit("/account");
     cy.wait(1000);
     cy.get('button[data-variant="secondary"]')

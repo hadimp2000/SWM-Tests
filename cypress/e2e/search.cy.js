@@ -21,7 +21,7 @@ describe("Search tests", () => {
     cy.contains("0 results").should("exist");
   });
 
-  it.only("SR-03: Verify filtering in search results", () => {
+  it("SR-03: Verify filtering in search results", () => {
     cy.visit("/");
     cy.wait(500);
 

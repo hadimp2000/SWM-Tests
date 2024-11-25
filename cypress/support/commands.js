@@ -45,7 +45,7 @@ Cypress.Commands.add("login", () => {
     cy.visit("/login");
     cy.get('input[type="email"]').click();
 
-    cy.get('input[type="email"]').type("differentEmail6@gmail.com");
+    cy.get('input[type="email"]').type("differentEmail7@gmail.com");
     cy.get('input[type="password"]').type("Password123!");
     cy.contains('button[type="submit"]', "Sign In").click();
     cy.wait(2000)
