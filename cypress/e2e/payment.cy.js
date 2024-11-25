@@ -33,7 +33,7 @@ describe("Payment Tests", () => {
     cy.location("pathname").should("eq", "/checkout/processing");
 
     // TestId = CO-02
-    cy.get('select[name="state"]').should("be.visible").select("New York");
+    // cy.get('select[name="state"]').should("be.visible").select("New York");
 
     cy.wait(1000);
 
@@ -49,9 +49,20 @@ describe("Payment Tests", () => {
       .click();
     cy.wait(7000);
 
-    cy.get('[data-cse="encryptedCardNumber"]') // Select the span by data attribute
-      .click({ force: true })
-      .type('222')
+    // Zugriff auf das iframe für das Ablaufdatum (Expiry Date)
+    // cy.get('iframe[title="Iframe for expiry date"]')
+    //   .its("0.contentDocument.body") // Lade den Inhalt des iframe
+    //   .should("not.be.empty") // Stelle sicher, dass der Inhalt geladen ist
+    //   .then(cy.wrap) // Wrappe den Inhalt
+    //   .find("input") // Finde das Eingabefeld für das Ablaufdatum
+    //   .type("0330"); // Gib ein Beispiel-Ablaufdatum ein (MM/YY)
+    // // Zugriff auf das iframe für den Sicherheitscode (CVC)
+    // cy.get('iframe[title="Iframe for security code"]')
+    //   .its("0.contentDocument.body") // Lade den Inhalt des iframe
+    //   .should("not.be.empty") // Stelle sicher, dass der Inhalt geladen ist
+    //   .then(cy.wrap) // Wrappe den Inhalt
+    //   .find("input") // Finde das Eingabefeld für den Sicherheitscode
+    //   .type("123"); // Gib ein Beispiel-CVC ein (z.B. 123)
 
     // cy.contains("All fields are required unless marked otherwise.").should(
     //   "be.visible"

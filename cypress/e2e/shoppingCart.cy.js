@@ -89,7 +89,7 @@ describe("Shopping cart tests", () => {
   });
 
   //Checkout
-  it.only("PP-02: Verify Add to Cart button", () => {
+  it("PP-02: Verify Add to Cart button", () => {
     cy.visit("/");
 
     cy.contains("p", "Our premium selection").click();
@@ -105,7 +105,7 @@ describe("Shopping cart tests", () => {
     cy.wait(1000);
   });
 
-  it.only("CO-01: Verify checkout page loads correctly", () => {
+  it("CO-01: Verify checkout page loads correctly", () => {
     // TestId = CO-01
     cy.log("CO-01: Verify checkout page loads correctly");
     cy.visit("/cart");
