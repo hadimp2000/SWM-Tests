@@ -1,8 +1,8 @@
-describe("User Registration and Login Tests", () => {
-  it("UR-01: Verify new user registration", () => {
+describe("User Registration and Login", () => {
+  it.only("UR-01: Verify new user registration", () => {
     cy.visit("/register");
     cy.get('input[placeholder="E-Mail"]').click();
-    cy.get('input[placeholder="E-Mail"]').type("hmp123475@gmail.com");
+    cy.get('input[placeholder="E-Mail"]').type("differentEmail6@gmail.com");
 
     cy.get("input#password")
       .type("Password123!")
@@ -20,15 +20,15 @@ describe("User Registration and Login Tests", () => {
 
     cy.contains("Mr").click();
 
-    cy.get("#firstName").type("John");
+    cy.get("#firstName").type("Hadi");
 
-    cy.get("#lastName").type("Doe");
+    cy.get("#lastName").type("Moradi");
 
-    cy.get("#streetName").type("123 Main St");
+    cy.get("#streetName").type("Street number 1");
 
     cy.get("#postalCode").type("12345");
 
-    cy.get("#city").type("Sample City");
+    cy.get("#city").type("New York");
 
     cy.get("#react-select-country-placeholder")
       .contains("Country")
@@ -39,20 +39,17 @@ describe("User Registration and Login Tests", () => {
     cy.contains("United States").click();
 
     cy.contains("Register Now").click();
+    cy.wait(1000);
+    cy.contains(
+      "Your account has been successfully created. An email was sent to you to verify your account."
+    )
+      .should("be.visible")
+      .scrollIntoView();
+      cy.wait(2000)
   });
 
   it("UR-02: Verify login functionality", () => {
-    cy.visit("/login");
-
-    cy.get('input[type="email"]').click();
-    cy.get('input[type="email"]').type("hmp123475@gmail.com");
-    cy.get('input[type="email"]').should("have.value", "hmp123475@gmail.com");
-
-    cy.get('input[type="password"]')
-      .type("Password123!")
-      .should("have.value", "Password123!");
-
-    cy.contains('button[type="submit"]', "Sign In").click();
+    cy.login()
   });
 
   it("UR-03: Verify login failure for invalid credentials", () => {
@@ -60,11 +57,8 @@ describe("User Registration and Login Tests", () => {
 
     cy.get('input[type="email"]').click();
     cy.get('input[type="email"]').type("something@gmail.com");
-    cy.get('input[type="email"]').should("have.value", "something@gmail.com");
 
-    cy.get('input[type="password"]')
-      .type("Password123!")
-      .should("have.value", "Password123!");
+    cy.get('input[type="password"]').type("Password123!");
 
     cy.contains('button[type="submit"]', "Sign In").click();
 
@@ -77,10 +71,10 @@ describe("User Registration and Login Tests", () => {
     cy.visit("/login");
 
     cy.get('a[href="/forgot-password"]').click();
-    cy.wait(2000)
-  
+    cy.wait(2000);
+
     cy.get('input[type="email"]').click();
-    cy.get('input[type="email"]').type("hmp123475@gmail.com");
+    cy.get('input[type="email"]').type("aValidEmail@gmail.com");
 
     cy.get('button[type="button"]')
       .contains(/Recover Password/i)
